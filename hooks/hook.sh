@@ -12,8 +12,8 @@ npm install
 #npm run front
 if [ "$branch" = "master" ]
 then
-    pm2 restart trees-server.js
+    pm2 deploy /var/www/mg-server/ecosystem.json production mg-server
 else
-    pm2 restart trees-server
+    pm2 deploy /var/www/mg-server/ecosystem.json develop mg-server
 fi
 

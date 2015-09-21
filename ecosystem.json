@@ -1,6 +1,6 @@
 {
   "apps" : [{
-    "name"      : "API",
+    "name"      : "mg-server",
     "script"    : "app.js",
     "env": {
       "COMMON_ENV_VAR": "true"
@@ -18,7 +18,7 @@
       "host" : "188.166.85.160",
       "repo" : "git@github.com:mathgraph/mg-main",
       "ref"  : "origin/master",
-      "path" : "/var/www/server/mg-main-prod",
+      "path" : "/var/www/mg-server/mg-main-prod",
       "post-deploy" : "pm2 startOrRestart ecosystem.json --env production"
     },
     "develop" : {
@@ -26,7 +26,7 @@
       "host" : "188.166.85.160",
       "repo" : "git@github.com:mathgraph/mg-main",
       "ref"  : "origin/develop",
-      "path" : "/var/www/server/mg-main",
+      "path" : "/var/www/mg-server/mg-main",
       "post-deploy" : "pm2 startOrRestart ecosystem.json --env develop"
     }
   }
