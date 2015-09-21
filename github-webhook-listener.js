@@ -22,25 +22,23 @@ app.post('/', function(req, res) {
         console.log('Signatures didn\'t match!');
         return res.status(500).send('Signatures didn\'t match!')
     } else {
-//        console.log('Execute hook.sh');
-        exec('pm2 deploy ecosystem.json production', function (error, stdout, stderr) {
-            console.log('stdout: ' + stdout);
-            console.log('stderr: ' + stderr);
-            exec('npm run build', function(error, stdout, stderr){
+        if (branch === 'master')
+            exec('pm2 deploy ecosystem-prod.json production', function (error, stdout, stderr) {
                 console.log('stdout: ' + stdout);
                 console.log('stderr: ' + stderr);
+                if (error !== null) {
+                    console.log('exec error: ' + error);
+                }
             });
-            if (error !== null) {
-                //exec('npm --prefix ./../  install', function () {
-                //});
-                //exec('bower cash clear', function () {
-                //});
-                //exec('bower install --config.cwd=./../', function () {
-                //}),
-                console.log('exec error: ' + error);
-            }
-        });
-    }
+       else
+            exec('pm2 deploy ecosystem.json develop', function (error, stdout, stderr) {
+                console.log('stdout: ' + stdout);
+                console.log('stderr: ' + stderr);
+                if (error !== null) {
+                    console.log('exec error: ' + error);
+                }
+            });
+     }
     return res.sendStatus(200);
 });
 
