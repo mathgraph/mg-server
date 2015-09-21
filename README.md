@@ -1,2 +1,2 @@
 # mg-server
-server with auto-deploy
+hook-server

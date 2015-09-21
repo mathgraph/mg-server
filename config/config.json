@@ -1,4 +1,4 @@
 {
-  "port_dev": 3011,
-  "port_prod": 3111
+  "port": 4567,
+  "SECRET": "itmo410"
 }
