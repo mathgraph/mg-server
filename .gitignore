@@ -2,3 +2,4 @@
 node_modules
 mg-main
 mg-main-prod
+*.save*
