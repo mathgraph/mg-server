@@ -1,5 +1,4 @@
-#!/usr/bin/env node
-
+var config = require('./config');
 var express = require('express');
 var crypto = require('crypto');
 var exec = require('child_process').exec;
