@@ -16,6 +16,7 @@
     "production" : {
       "user" : "sivsais",
       "host" : "188.166.85.160",
+      "port" : 2014,
       "repo" : "git@github.com:mathgraph/mg-server",
       "ref"  : "origin/master",
       "path" : "/var/www/mg-server",
@@ -24,6 +25,7 @@
     "develop" : {
       "user" : "sivsais",
       "host" : "188.166.85.160",
+      "port" : 2014,
       "repo" : "git@github.com:mathgraph/mg-server",
       "ref"  : "origin/develop",
       "path" : "/var/www/mg-server",
