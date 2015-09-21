@@ -14,7 +14,7 @@
   }],
   "deploy" : {
     "production" : {
-      "user" : "node",
+      "user" : "sivsais",
       "host" : "188.166.85.160",
       "repo" : "git@github.com:mathgraph/mg-server",
       "ref"  : "origin/master",
@@ -22,7 +22,7 @@
       "post-deploy" : "pm2 startOrRestart ecosystem.json --env production"
     },
     "develop" : {
-      "user" : "node",
+      "user" : "sivsais",
       "host" : "188.166.85.160",
       "repo" : "git@github.com:mathgraph/mg-server",
       "ref"  : "origin/develop",
