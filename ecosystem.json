@@ -19,7 +19,7 @@
 		  host: "188.166.85.160",
                   port: "2014" 
                },
-      "repo" : "git@github.com:mathgraph/mg-server",
+      "repo" : "https://github.com/mathgraph/mg-server.git",
       "ref"  : "origin/master",
       "path" : "/var/www/mg-server",
       "post-deploy" : "pm2 startOrRestart ecosystem.json --env production"
@@ -30,7 +30,7 @@
                   host: "188.166.85.160",
                   port: "2014"
                },
-      "repo" : "git@github.com:mathgraph/mg-server",
+      "repo" : "https://github.com/mathgraph/mg-server.git",
       "ref"  : "origin/develop",
       "path" : "/var/www/mg-server",
       "post-deploy" : "pm2 startOrRestart ecosystem.json --env develop"
