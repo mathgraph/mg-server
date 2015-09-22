@@ -23,7 +23,7 @@ app.post('/', function(req, res) {
         return res.status(500).send('Signatures didn\'t match!')
     } else {
         if (branch === 'master')
-            exec('pm2 deploy ecosystem-prod.json production', function (error, stdout, stderr) {
+            exec('cd /var/www/mg-main-prod/current/ && pm2 deploy ecosystem-prod.json production', function (error, stdout, stderr) {
                 console.log('stdout: ' + stdout);
                 console.log('stderr: ' + stderr);
                 if (error !== null) {
@@ -31,7 +31,7 @@ app.post('/', function(req, res) {
                 }
             });
        else
-            exec('pm2 deploy ecosystem.json develop', function (error, stdout, stderr) {
+            exec('cd /var/www/mg-main/current/ && pm2 deploy ecosystem.json develop', function (error, stdout, stderr) {
                 console.log('stdout: ' + stdout);
                 console.log('stderr: ' + stderr);
                 if (error !== null) {
