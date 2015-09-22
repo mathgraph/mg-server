@@ -41,7 +41,7 @@
       ref  : "origin/master",
       repo : "https://github.com/mathgraph/mg-server.git",
       path : "/var/www/mg-server",
-      "post-deploy" : "pm2 startOrRestart ecosystem.json5 --env production"
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json5 --env production"
     },
     dev : {
       user : "sivsais",
@@ -52,7 +52,7 @@
       ref  : "origin/master",
       repo : "https://github.com/mathgraph/mg-server.git",
       path : "/var/www/mg-server-dev",
-      "post-deploy" : "pm2 startOrRestart ecosystem.json5 --env dev",
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json5 --env dev",
       env  : {
         NODE_ENV: "dev"
       }
