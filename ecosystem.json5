@@ -49,7 +49,7 @@
                  "host" : "188.166.85.160",
                  "port" : "2014"
              },
-      ref  : "origin/master",
+      ref  : "origin/develop",
       repo : "https://github.com/mathgraph/mg-server.git",
       path : "/var/www/mg-server-dev",
       "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json5 --env dev",

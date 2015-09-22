@@ -23,7 +23,7 @@ app.post('/', function(req, res) {
         return res.status(500).send('Signatures didn\'t match!')
     } else {
         if (branch === 'develop')
-            exec('cd /var/www/mg-main/current/ && pm2 deploy ecosystem.json develop', function (error, stdout, stderr) {
+            exec(' cd /var/www/mg-main/current/ && git fetch && git checkout develop && git pull && npm install && bower clear cash && bower install --config.cwd=./static/ && pm2 startOrRestart ecosystem.json develop', function (error, stdout, stderr) {
                 console.log('stdout: ' + stdout);
                 console.log('stderr: ' + stderr);
                 if (error !== null) {
