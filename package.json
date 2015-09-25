@@ -9,9 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "~4.13.3",
+    "body-parser": "~1.14.0",
     "crypto": "0.0.3",
+    "express": "~4.13.3",
     "nconf": "~0.8.0",
-    "body-parser": "~1.14.0"
+    "node-trello": "^1.1.2",
+    "trello": "^0.4.1"
   }
 }
