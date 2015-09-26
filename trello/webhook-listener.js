@@ -9,13 +9,13 @@ var token = 'd72434c2e43ccc5295d8f940c10a69235e34c7afe2003090f78075f32e34b265';
 var trello = new Trello(key, token);
 var callbackURL = 'http://188.166.85.160:8888';
 
-function verifyTrelloWebhookRequest(request, secret, callbackURL) {
+function verifyTrelloWebhookRequest(request, body, secret, callbackURL) {
     // Double-HMAC to blind any timing channel attacks
     // https://www.isecpartners.com/blog/2011/february/double-hmac-verification.asp
     var base64Digest = function (s) {
         return crypto.createHmac('sha1', secret).update(s).digest('base64');
     };
-    var content = request.body + callbackURL;
+    var content = body + callbackURL;
     var doubleHash = base64Digest(base64Digest(content));
     var headerHash = base64Digest(request.headers['x-trello-webhook']);
     return doubleHash == headerHash;
@@ -23,14 +23,16 @@ function verifyTrelloWebhookRequest(request, secret, callbackURL) {
 
 var app = express();
 
-app
-	.use(bodyParser.urlencoded({ extended: true }))
-	.use(bodyParser.json())
-	.use(function (req, res) {
-		if (!verifyTrelloWebhookRequest(req, secret, callbackURL)) {
-			res.status(404).send();
-			return;
+app	
+	.use(bodyParser.json({ 
+		verify: function (req, res, buf) { 
+			var flag = verifyTrelloWebhookRequest(req, buf, secret, callbackURL); 
+			flag = false;
+			!flag && res.status(404).send();
 		}
+	}))
+	.use(function (req, res) {
+		console.log('verify accepted');
 		if (req.body.action.type === 'createCard') {
 			var card = req.body.action.data.card;
 			trello.put('1/cards/' + card.id, { name: '[' + card.idShort + '] ' + card.name }, function (err, respose) {
