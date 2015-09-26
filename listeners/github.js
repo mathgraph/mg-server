@@ -13,7 +13,7 @@ function verify(request, body, secret) {
 module.exports = function (req, res, next) {
 
 	if (!verify(req, req.rawBodyBuffer, secret)) {
-		res.status(404).send();
+		res.status(200).send('No');
 		return;
 	}
 
