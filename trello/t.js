@@ -2,7 +2,7 @@ var Trello = require('node-trello');
 
 var key = 'c3c747f69e1c727e1cc904f87cb798aa';
 var secret = 'd49fe0aaa39a681ccbcc5f2c9e55c5c40465016189dbe833d0170af005ec8391';
-var token = '2713329724dab818edd5c15cabb49ded95e5940991a097f132fcee38667345c8';
+var token = 'd72434c2e43ccc5295d8f940c10a69235e34c7afe2003090f78075f32e34b265';
 
 var t = new Trello(key, token);
 
