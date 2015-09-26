@@ -1,5 +1,4 @@
 var express = require('express');
-var bodyParser = require('body-parser');
 var port = +process.env.WEBHOOK_PORT || 8888;
 
 var app = express();

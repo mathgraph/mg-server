@@ -16,7 +16,7 @@ function verify(request, body, secret, callbackURL) {
 
 module.exports = function (req, res, next) {
 
-	if (!verify(req, req.rawBodyBuffer, secret, callbackURL)) {
+	if (!verify(req, req.rawBodyBuffer || '', secret, callbackURL)) {
 		res.status(200).send('No');
 		return;
 	}
