@@ -26,13 +26,14 @@ var app = express();
 app	
 	.use(bodyParser.json({ 
 		verify: function (req, res, buf) { 
-			var flag = verifyTrelloWebhookRequest(req, buf, secret, callbackURL); 
-			flag = false;
-			!flag && res.status(404).send();
+			req.rawBodyBuffer = buf;
 		}
 	}))
 	.use(function (req, res) {
-		console.log('verify accepted');
+		if (!verifyTrelloWebhookRequest(req, req.rawBodyBuffer, secret, callbackURL)) {
+			res.status(404).send();
+			return;
+		}
 		if (req.body.action.type === 'createCard') {
 			var card = req.body.action.data.card;
 			trello.put('1/cards/' + card.id, { name: '[' + card.idShort + '] ' + card.name }, function (err, respose) {
