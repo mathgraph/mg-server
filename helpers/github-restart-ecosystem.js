@@ -4,9 +4,9 @@ var repo = 'mg-main';
 
 module.exports = function (data) {
 
-	data.repository.name !== repo && 
-	data.ref.split('/')[2] !== branch && 
-	return;
+	if (data.repository.name !== repo || data.ref.split('/')[2] !== branch) { 
+		return;
+	}
 
 	console.log('New push to ' + data.ref + ' by ' + data.pusher.name + ' (' + data.pusher.email + ')');
     exec([
