@@ -7,7 +7,7 @@ var commits = require('../helpers/github-commits');
 function verify(request, body, secret) {
 	var hmac = crypto.createHmac('sha1', secret).update(body);
 	var signature = 'sha1=' + hmac.digest('hex');
-	return signature === req.headers['x-hub-signature'];
+	return signature === request.headers['x-hub-signature'];
 }
 
 module.exports = function (req, res, next) {
