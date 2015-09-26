@@ -37,7 +37,7 @@ app
 		if (req.body.action.type === 'createCard') {
 			var card = req.body.action.data.card;
 			trello.put('1/cards/' + card.id, { name: '[' + card.idShort + '] ' + card.name }, function (err, respose) {
-            	console.log(err || respose);
+            	err && console.log(err);
         	});
 		}
 		res.status(200).send();
