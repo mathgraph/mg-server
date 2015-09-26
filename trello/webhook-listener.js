@@ -2,6 +2,13 @@ var crypto = require('crypto');
 var express = require('express');
 var bodyParser = require('body-parser');
 
+var Trello = require('node-trello');
+var key = 'c3c747f69e1c727e1cc904f87cb798aa';
+var secret = 'd49fe0aaa39a681ccbcc5f2c9e55c5c40465016189dbe833d0170af005ec8391';
+var token = 'd72434c2e43ccc5295d8f940c10a69235e34c7afe2003090f78075f32e34b265';
+var trello = new Trello(key, token);
+var callbackURL = 'http://188.166.85.160:8888';
+
 function verifyTrelloWebhookRequest(request, secret, callbackURL) {
     // Double-HMAC to blind any timing channel attacks
     // https://www.isecpartners.com/blog/2011/february/double-hmac-verification.asp
@@ -14,17 +21,23 @@ function verifyTrelloWebhookRequest(request, secret, callbackURL) {
     return doubleHash == headerHash;
 }
 
-var secret = 'd49fe0aaa39a681ccbcc5f2c9e55c5c40465016189dbe833d0170af005ec8391';
-
 var app = express();
 
 app
 	.use(bodyParser.urlencoded({ extended: true }))
 	.use(bodyParser.json())
 	.use(function (req, res) {
-		console.log(req.body);
-		console.log(req.params);
-		res.status(200);
+		if (!verifyTrelloWebhookRequest(req, secret, callbackURL)) {
+			res.status(404).send();
+			return;
+		}
+		if (req.body.action.type === 'createCard') {
+			var card = req.body.action.data.card;
+			trello.put('1/cards/' + card.id, { name: '[' + card.idShort + '] ' + card.name }, function (err, respose) {
+            	console.log(err || respose);
+        	});
+		}
+		res.status(200).send();
 	})
 	.listen(8888);
 
