@@ -14,10 +14,7 @@
     // First application
     {
       name      : "mg-server",
-      script    : "github-webhook-listener.js",
-      env: {
-        COMMON_VARIABLE: "true"
-      },
+      script    : "webhook-listener.js",
       env_production : {
         NODE_ENV: "production"
       }
